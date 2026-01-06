@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nighthawks Network: Liderazgo en Ciberseguridad Avanzada, Pentesting y Cumplimiento ISO 27001.">
+    <title>Nighthawks Network | Cyber Intelligence & Defense</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #00f2ff;
+            --primary-dark: #0066ff;
+            --accent: #7000ff;
+            --bg-darker: #020617;
+            --bg-card: rgba(15, 23, 42, 0.7);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border-glass: rgba(0, 242, 255, 0.1);
+        }
+
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-darker);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .logo-text { font-family: 'Space Grotesk', sans-serif; }
+
+        /* Background Dinámico de Partículas */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%);
+        }
+
+        /* Header Glassmorphism */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            background: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .logo-icon { 
+            font-size: 2rem; 
+            color: var(--primary); 
+            filter: drop-shadow(0 0 10px var(--primary));
+        }
+        .logo-text { font-weight: 700; font-size: 1.5rem; letter-spacing: -1px; color: #fff; }
+
+        nav ul { display: flex; list-style: none; gap: 35px; }
+        nav a { 
+            text-decoration: none; color: var(--text-muted); 
+            font-weight: 500; font-size: 0.95rem; 
+            transition: 0.3s;
+        }
+        nav a:hover { color: var(--primary); text-shadow: 0 0 8px var(--primary); }
+
+        /* Hero Section Avanzada */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content { z-index: 2; max-width: 900px; }
+        .badge {
+            display: inline-block;
+            padding: 6px 15px;
+            background: rgba(0, 242, 255, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            line-height: 1;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--primary), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            max-width: 650px;
+            margin-inline: auto;
+        }
+
+        /* Botones Pro */
+        .btn-group { display: flex; gap: 20px; justify-content: center; }
+        .btn {
+            padding: 16px 35px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-primary { 
+            background: var(--primary); 
+            color: #000; 
+            box-shadow: 0 0 25px rgba(0, 242, 255, 0.4);
+        }
+        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 0 40px rgba(0, 242, 255, 0.6); }
+
+        /* Grid de Servicios con Efecto Glass-Elevation */
+        .services { padding: 100px 0; }
+        .section-header { text-align: center; margin-bottom: 70px; }
+        .section-header h2 { font-size: 2.5rem; margin-bottom: 15px; }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .s-card {
+            background: var(--bg-card);
+            padding: 45px;
+            border-radius: 20px;
+            border: 1px solid var(--border-glass);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .s-card:hover {
+            border-color: var(--primary);
+            background: rgba(15, 23, 42, 0.9);
+            transform: translateY(-10px);
+        }
+
+        .s-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .s-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
+        .s-card p { color: var(--text-muted); line-height: 1.7; }
+
+        /* Contacto Estilo "Terminal" */
+        .contact { padding: 100px 0; background: rgba(0,0,0,0.3); }
+        .contact-box {
+            background: #000;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            overflow: hidden;
+        }
+
+        .contact-info { background: var(--primary); color: #000; padding: 60px; }
+        .contact-form { padding: 60px; background: #0f172a; }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        /* Animaciones */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 242, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .contact-box { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="particles-js"></div>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <i class="fas fa-user-shield logo-icon"></i>
+                <span class="logo-text">NIGHTHAWKS</span>
+            </a>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="#home">Terminal</a></li>
+                    <li><a href="#services">Defensa</a></li>
+                    <li><a href="#intelligence">Inteligencia</a></li>
+                    <li><a href="#contact">Enlace</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">REPORTE INCIDENTE</a>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <span class="badge">Estatus: Sistema Operativo • Latencia 12ms</span>
+            <h1>Ciberseguridad de <br><span style="color: var(--primary);">Grado Militar</span></h1>
+            <p>Blindamos la infraestructura digital de Latinoamérica con inteligencia predictiva y respuesta táctica ante amenazas avanzadas.</p>
+            <div class="btn-group">
+                <a href="#services" class="btn btn-primary"><i class="fas fa-terminal"></i> INICIAR AUDITORÍA</a>
+                <a href="#contact" class="btn" style="border: 1px solid #1e293b; color: #fff;">SOPORTE 24/7</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Capacidades Defensivas</h2>
+                <p>Protocolos avanzados para la resiliencia de datos.</p>
+            </div>
+            <div class="services-grid">
+                <div class="s-card">
+                    <i class="fas fa-code-branch"></i>
+                    <h3>Pentesting Ofensivo</h3>
+                    <p>Simulación de adversarios reales (Red Teaming) para descubrir brechas antes que los atacantes.</p>
+                </div>
+                <div class="s-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>IA Defensiva</h3>
+                    <p>Modelos de Machine Learning entrenados para detectar anomalías en el tráfico de red en tiempo real.</p>
+                </div>
+                <div class="s-card">
+                    <i class="fas fa-file-shield"></i>
+                    <h3>Compliance ISO 27001</h3>
+                    <p>Adecuación normativa y auditoría forense para empresas de alta criticidad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-box">
+                <div class="contact-info">
+                    <h2>Centro de Comando</h2>
+                    <p style="margin: 20px 0;">Establezca una comunicación encriptada con nuestro equipo de expertos.</p>
+                    <div style="margin-top: 40px;">
+                        <p><i class="fas fa-map-marker-alt"></i> Santiago HQ | Global Operations</p>
+                        <p><i class="fas fa-envelope"></i> ops@nighthawks.net</p>
+                        <p><i class="fas fa-phone"></i> +56 2 2987 6543</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="cyberForm">
+                        <input type="text" placeholder="ID de Organización" required>
+                        <input type="email" placeholder="Correo Encriptado" required>
+                        <textarea rows="4" placeholder="Describa el vector de amenaza o requerimiento..."></textarea>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                            ENVIAR TRANSMISIÓN
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Configuración de Partículas (Red de Ciberseguridad)
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#00f2ff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.2, random: false },
+                size: { value: 2, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#00f2ff",
+                    opacity: 0.1,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1.5,
+                    direction: "none",
+                    random: false,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                },
+                modes: {
+                    grab: { distance: 140, line_linked: { opacity: 0.5 } }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Efecto de Escritura en Terminal para el Formulario
+        document.getElementById('cyberForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ENCRIPTANDO...';
+            setTimeout(() => {
+                alert('Transmisión enviada con éxito. Estatus: Pendiente de Revisión.');
+                btn.innerHTML = 'ENVIAR TRANSMISIÓN';
+                this.reset();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
