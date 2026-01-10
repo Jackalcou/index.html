@@ -1,353 +1,116 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Nighthawks Network: Liderazgo en Ciberseguridad Avanzada, Pentesting y Cumplimiento ISO 27001.">
-    <title>Nighthawks Network | Cyber Intelligence & Defense</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Nighthawks - Elite Cybersecurity</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet"/>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#a855f7",    /* Púrpura neón de tus archivos */
+                        "primary-dark": "#7e22ce",
+                        "background-dark": "#020617",
+                        "surface-dark": "#0f172a",
+                    },
+                    fontFamily: { sans: ["Inter", "sans-serif"] },
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --primary: #00f2ff;
-            --primary-dark: #0066ff;
-            --accent: #7000ff;
-            --bg-darker: #020617;
-            --bg-card: rgba(15, 23, 42, 0.7);
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border-glass: rgba(0, 242, 255, 0.1);
-        }
-
-        /* Reset & Base */
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-darker);
-            color: var(--text-main);
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        h1, h2, h3, .logo-text { font-family: 'Space Grotesk', sans-serif; }
-
-        /* Background Dinámico de Partículas */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%);
-        }
-
-        /* Header Glassmorphism */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            padding: 20px 0;
-            background: rgba(2, 6, 23, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-glass);
-        }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
-        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-
-        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .logo-icon { 
-            font-size: 2rem; 
-            color: var(--primary); 
-            filter: drop-shadow(0 0 10px var(--primary));
-        }
-        .logo-text { font-weight: 700; font-size: 1.5rem; letter-spacing: -1px; color: #fff; }
-
-        nav ul { display: flex; list-style: none; gap: 35px; }
-        nav a { 
-            text-decoration: none; color: var(--text-muted); 
-            font-weight: 500; font-size: 0.95rem; 
-            transition: 0.3s;
-        }
-        nav a:hover { color: var(--primary); text-shadow: 0 0 8px var(--primary); }
-
-        /* Hero Section Avanzada */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-content { z-index: 2; max-width: 900px; }
-        .badge {
-            display: inline-block;
-            padding: 6px 15px;
-            background: rgba(0, 242, 255, 0.1);
-            border: 1px solid var(--primary);
-            border-radius: 50px;
-            color: var(--primary);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            animation: pulse 2s infinite;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            line-height: 1;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, var(--primary), #fff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.25rem;
-            margin-bottom: 40px;
-            max-width: 650px;
-            margin-inline: auto;
-        }
-
-        /* Botones Pro */
-        .btn-group { display: flex; gap: 20px; justify-content: center; }
-        .btn {
-            padding: 16px 35px;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .btn-primary { 
-            background: var(--primary); 
-            color: #000; 
-            box-shadow: 0 0 25px rgba(0, 242, 255, 0.4);
-        }
-        .btn-primary:hover { transform: translateY(-5px); box-shadow: 0 0 40px rgba(0, 242, 255, 0.6); }
-
-        /* Grid de Servicios con Efecto Glass-Elevation */
-        .services { padding: 100px 0; }
-        .section-header { text-align: center; margin-bottom: 70px; }
-        .section-header h2 { font-size: 2.5rem; margin-bottom: 15px; }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        .s-card {
-            background: var(--bg-card);
-            padding: 45px;
-            border-radius: 20px;
-            border: 1px solid var(--border-glass);
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .s-card:hover {
-            border-color: var(--primary);
-            background: rgba(15, 23, 42, 0.9);
-            transform: translateY(-10px);
-        }
-
-        .s-card i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 25px;
-            display: block;
-        }
-
-        .s-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
-        .s-card p { color: var(--text-muted); line-height: 1.7; }
-
-        /* Contacto Estilo "Terminal" */
-        .contact { padding: 100px 0; background: rgba(0,0,0,0.3); }
-        .contact-box {
-            background: #000;
-            border: 1px solid #1e293b;
-            border-radius: 12px;
-            display: grid;
-            grid-template-columns: 1fr 1.5fr;
-            overflow: hidden;
-        }
-
-        .contact-info { background: var(--primary); color: #000; padding: 60px; }
-        .contact-form { padding: 60px; background: #0f172a; }
-
-        input, textarea {
-            width: 100%;
-            padding: 15px;
-            background: #020617;
-            border: 1px solid #1e293b;
-            border-radius: 8px;
-            color: #fff;
-            margin-bottom: 20px;
-        }
-
-        /* Animaciones */
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(0, 242, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 242, 255, 0); }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .contact-box { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 3rem; }
-        }
+        body { background-color: #020617; color: white; }
+        .glass { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.05); }
+        .glow-hover:hover { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); border-color: #a855f7; }
     </style>
 </head>
-<body>
+<body class="antialiased selection:bg-primary selection:text-white">
 
-    <div id="particles-js"></div>
-
-    <header>
-        <div class="container nav-wrapper">
-            <a href="#" class="logo">
-                <i class="fas fa-user-shield logo-icon"></i>
-                <span class="logo-text">NIGHTHAWKS</span>
-            </a>
-            <nav class="nav-links">
-                <ul>
-                    <li><a href="#home">Terminal</a></li>
-                    <li><a href="#services">Defensa</a></li>
-                    <li><a href="#intelligence">Inteligencia</a></li>
-                    <li><a href="#contact">Enlace</a></li>
-                </ul>
-            </nav>
-            <a href="#contact" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">REPORTE INCIDENTE</a>
+    <nav class="fixed w-full z-50 border-b border-white/5 bg-background-dark/80 backdrop-blur-xl">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2 group">
+                <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center group-hover:rotate-12 transition-transform">
+                    <span class="material-symbols-outlined text-white">security</span>
+                </div>
+                <span class="text-xl font-extrabold tracking-tighter uppercase">Nighthawks</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="#servicios" class="hover:text-primary transition-colors">Servicios</a>
+                <a href="#infraestructura" class="hover:text-primary transition-colors">Infraestructura</a>
+                <a href="#soporte" class="hover:text-primary transition-colors">Soporte</a>
+                <a href="#contacto" class="px-5 py-2.5 bg-primary/10 text-primary border border-primary/20 rounded-full hover:bg-primary hover:text-white transition-all">Consola</a>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <span class="badge">Estatus: Sistema Operativo • Latencia 12ms</span>
-            <h1>Ciberseguridad de <br><span style="color: var(--primary);">Grado Militar</span></h1>
-            <p>Blindamos la infraestructura digital de Latinoamérica con inteligencia predictiva y respuesta táctica ante amenazas avanzadas.</p>
-            <div class="btn-group">
-                <a href="#services" class="btn btn-primary"><i class="fas fa-terminal"></i> INICIAR AUDITORÍA</a>
-                <a href="#contact" class="btn" style="border: 1px solid #1e293b; color: #fff;">SOPORTE 24/7</a>
+    <section class="relative pt-44 pb-32 overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/20 blur-[120px] rounded-full -z-10"></div>
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-primary mb-8">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                </span>
+                SISTEMAS OPERATIVOS V2.0
+            </div>
+            <h1 class="text-6xl md:text-8xl font-black tracking-tight mb-8">
+                Defensa Digital <br/>
+                <span class="bg-gradient-to-r from-primary to-fuchsia-500 bg-clip-text text-transparent">Sin Compromisos</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-slate-400 mb-12">
+                Arquitectura de seguridad avanzada inspirada en los estándares más altos de la industria. Protección proactiva, inteligencia de amenazas y respuesta inmediata.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button class="w-full sm:w-auto px-8 py-4 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl transition-all shadow-lg shadow-primary/25">
+                    Explorar Auditoría
+                </button>
+                <button class="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold rounded-xl transition-all">
+                    Ver Documentación
+                </button>
             </div>
         </div>
     </section>
 
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Capacidades Defensivas</h2>
-                <p>Protocolos avanzados para la resiliencia de datos.</p>
-            </div>
-            <div class="services-grid">
-                <div class="s-card">
-                    <i class="fas fa-code-branch"></i>
-                    <h3>Pentesting Ofensivo</h3>
-                    <p>Simulación de adversarios reales (Red Teaming) para descubrir brechas antes que los atacantes.</p>
-                </div>
-                <div class="s-card">
-                    <i class="fas fa-brain"></i>
-                    <h3>IA Defensiva</h3>
-                    <p>Modelos de Machine Learning entrenados para detectar anomalías en el tráfico de red en tiempo real.</p>
-                </div>
-                <div class="s-card">
-                    <i class="fas fa-file-shield"></i>
-                    <h3>Compliance ISO 27001</h3>
-                    <p>Adecuación normativa y auditoría forense para empresas de alta criticidad.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="contact-box">
-                <div class="contact-info">
-                    <h2>Centro de Comando</h2>
-                    <p style="margin: 20px 0;">Establezca una comunicación encriptada con nuestro equipo de expertos.</p>
-                    <div style="margin-top: 40px;">
-                        <p><i class="fas fa-map-marker-alt"></i> Santiago HQ | Global Operations</p>
-                        <p><i class="fas fa-envelope"></i> ops@nighthawks.net</p>
-                        <p><i class="fas fa-phone"></i> +56 2 2987 6543</p>
+    <section id="servicios" class="py-24 bg-slate-950/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-3xl glow-hover transition-all group">
+                    <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                        <span class="material-symbols-outlined text-primary group-hover:text-white">shield_lock</span>
                     </div>
+                    <h3 class="text-xl font-bold mb-4">Cifrado de Datos</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Implementación de algoritmos post-cuánticos para la protección de activos sensibles en reposo y tránsito.</p>
                 </div>
-                <div class="contact-form">
-                    <form id="cyberForm">
-                        <input type="text" placeholder="ID de Organización" required>
-                        <input type="email" placeholder="Correo Encriptado" required>
-                        <textarea rows="4" placeholder="Describa el vector de amenaza o requerimiento..."></textarea>
-                        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-                            ENVIAR TRANSMISIÓN
-                        </button>
-                    </form>
+                <div class="glass p-8 rounded-3xl glow-hover transition-all group border-primary/30">
+                    <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                        <span class="material-symbols-outlined text-primary group-hover:text-white">terminal</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Pentesting Ofensivo</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Simulación de ataques persistentes avanzados (APT) para identificar vulnerabilidades antes que los atacantes.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl glow-hover transition-all group">
+                    <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+                        <span class="material-symbols-outlined text-primary group-hover:text-white">monitoring</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Monitoreo 24/7</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">SOC operado por analistas expertos utilizando inteligencia artificial para detección de anomalías.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        // Configuración de Partículas (Red de Ciberseguridad)
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#00f2ff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.2, random: false },
-                size: { value: 2, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#00f2ff",
-                    opacity: 0.1,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 1.5,
-                    direction: "none",
-                    random: false,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false,
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "grab" },
-                    onclick: { enable: true, mode: "push" },
-                    resize: true
-                },
-                modes: {
-                    grab: { distance: 140, line_linked: { opacity: 0.5 } }
-                }
-            },
-            retina_detect: true
-        });
+    <footer class="py-12 border-t border-white/5 text-center">
+        <div class="max-w-7xl mx-auto px-6">
+            <p class="text-slate-500 text-sm">© 2024 Nighthawks Network. Todos los sistemas protegidos.</p>
+        </div>
+    </footer>
 
-        // Efecto de Escritura en Terminal para el Formulario
-        document.getElementById('cyberForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = this.querySelector('button');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> ENCRIPTANDO...';
-            setTimeout(() => {
-                alert('Transmisión enviada con éxito. Estatus: Pendiente de Revisión.');
-                btn.innerHTML = 'ENVIAR TRANSMISIÓN';
-                this.reset();
-            }, 2000);
-        });
-    </script>
 </body>
 </html>
